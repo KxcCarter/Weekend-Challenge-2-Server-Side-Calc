@@ -10,6 +10,7 @@ function init() {
     $('#jsClearInputs').on('click', clearInputs);
     $('#jsClearInputs').on('dblclick', clearHistory);
     $('#jsHistory').on('click', '.jsHistoricalItem', recompute);
+    $('#jsKeypad').on('click', '.btn', handleGUI);
     renderHistory();
 }
 
@@ -105,4 +106,17 @@ function recompute() {
     $('#jsNum2').val($(this).data().num2);
     operatorInput = $(this).data().op;
     performCalc();
+}
+
+let inputNum1 = [];
+let inputNum2 = [];
+
+function handleGUI() {
+    let displayVal1 = 0;
+    inputNum1.push($(this).val());
+    console.log(inputNum1);
+    for (let num of inputNum1) {
+        displayVal1 += num;
+    }
+    console.log(displayVal1);
 }
