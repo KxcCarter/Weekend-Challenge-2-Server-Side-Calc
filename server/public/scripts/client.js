@@ -45,10 +45,22 @@ function retrieveSolved() {
         })
         .then((response) => {
             console.log('GET - response:', response);
-            currentSolution = response.result;
+            currentSolution = response.solved.result;
+            render(response.solved);
         })
         .catch(function(err) {
             console.log(err);
-            alert('Something went terribly wrong!!!!!');
+            alert('Oops.');
         });
+}
+
+function render(solved) {
+    let a, b, opp, answer;
+    [a, b, opp, answer] = [
+        solved.num1,
+        solved.num2,
+        solved.opperator,
+        solved.result,
+    ];
+    $('#jsCalcResult').text(`${a} ${opp} ${b} = ${answer}`);
 }

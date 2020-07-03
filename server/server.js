@@ -41,6 +41,7 @@ function calculate(mathObject) {
 
     mathObject.result = result;
     mathSolved = mathObject;
+    solved = mathSolved;
     history.push(mathSolved);
     return mathSolved;
 } // end calculate
@@ -64,8 +65,8 @@ app.post('/calc', (req, res) => {
 });
 
 app.get('/solved', (req, res) => {
-    console.log(solved);
-    res.send(solved);
+    console.log('get request recieved');
+    res.send({ solved });
 });
 
 app.get('/prevCalculations', (req, res) => {
