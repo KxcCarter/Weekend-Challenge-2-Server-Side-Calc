@@ -104,4 +104,5 @@ function recompute() {
     $('#jsNum1').val($(this).data().num1);
     $('#jsNum2').val($(this).data().num2);
     opperatorInput = $(this).data().opp;
+    performCalc();
 }
