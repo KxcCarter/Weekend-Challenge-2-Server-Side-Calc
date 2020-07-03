@@ -20,11 +20,11 @@ function calculate(mathObject) {
     let result = null;
     let mathSolved = {};
 
-    let a, b, opp;
+    let a, b, op;
 
-    [a, b, opp] = [mathObject.num1, mathObject.num2, mathObject.opperator];
+    [a, b, op] = [mathObject.num1, mathObject.num2, mathObject.operator];
 
-    switch (opp) {
+    switch (op) {
         case '+':
             result = Number(a) + Number(b);
             break;
@@ -52,7 +52,7 @@ function calculate(mathObject) {
 // {
 //     num1: Number,
 //     num2: Number,
-//     opperator: String,
+//     operator: String,
 //     result: Number
 // }
 

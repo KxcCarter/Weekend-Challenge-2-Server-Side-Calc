@@ -1,11 +1,11 @@
 $(document).ready(init);
 
-let opperatorInput = null;
+let operatorInput = null;
 let currentSolution = null;
 
 function init() {
     console.log('js and jQuery loaded');
-    $('.js-btn-opperator').on('click', handleOpp);
+    $('.js-btn-operator').on('click', handleOp);
     $('#jsCalculate').on('click', performCalc);
     $('#jsClearInputs').on('click', clearInputs);
     $('#jsClearInputs').on('dblclick', clearHistory);
@@ -13,8 +13,8 @@ function init() {
     renderHistory();
 }
 
-function handleOpp() {
-    opperatorInput = $(this).data('opp');
+function handleOp() {
+    operatorInput = $(this).data('op');
 }
 
 function clearInputs() {
@@ -26,13 +26,13 @@ function performCalc() {
     let mathObject = {
         num1: parseInt($('#jsNum1').val()),
         num2: parseInt($('#jsNum2').val()),
-        opperator: opperatorInput,
+        operator: operatorInput,
     };
 
     if (
         $('#jsNum1').val() == '' ||
         $('#jsNum2').val() == '' ||
-        mathObject.opperator == null
+        mathObject.operator == null
     ) {
         alert('Please complete all fields!');
         return;
@@ -64,14 +64,14 @@ function retrieveSolved() {
 }
 
 function render(solved) {
-    let a, b, opp, answer;
-    [a, b, opp, answer] = [
+    let a, b, op, answer;
+    [a, b, op, answer] = [
         solved.num1,
         solved.num2,
-        solved.opperator,
+        solved.operator,
         solved.result,
     ];
-    $('#jsCalcResult').text(`${a} ${opp} ${b} = ${answer}`);
+    $('#jsCalcResult').text(`${a} ${op} ${b} = ${answer}`);
     renderHistory();
 }
 
@@ -85,7 +85,7 @@ function renderHistory() {
         $('#jsHistory').empty();
         for (let each of history) {
             $('#jsHistory').append(`
-            <li class="jsHistoricalItem" data-num1="${each.num1}" data-num2="${each.num2}" data-opp="${each.opperator}" >${each.num1} ${each.opperator} ${each.num2} = ${each.result}</li>`);
+            <li class="jsHistoricalItem" data-num1="${each.num1}" data-num2="${each.num2}" data-op="${each.operator}" >${each.num1} ${each.operator} ${each.num2} = ${each.result}</li>`);
         }
     });
 }
@@ -103,6 +103,6 @@ function clearHistory() {
 function recompute() {
     $('#jsNum1').val($(this).data().num1);
     $('#jsNum2').val($(this).data().num2);
-    opperatorInput = $(this).data().opp;
+    operatorInput = $(this).data().op;
     performCalc();
 }
