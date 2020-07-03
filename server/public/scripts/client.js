@@ -9,16 +9,9 @@ function init() {
     $('#jsCalculate').on('click', performCalc);
     $('#jsClearInputs').on('click', clearInputs);
     $('#jsClearInputs').on('dblclick', clearHistory);
+    $('#jsHistory').on('click', '.jsHistoricalItem', recompute);
     renderHistory();
 }
-
-// mathObject structure
-// {
-//     num1: Number,
-//     num2: Number,
-//     opperator: String,
-//     result: Number
-// }
 
 function handleOpp() {
     opperatorInput = $(this).data('opp');
@@ -88,15 +81,11 @@ function renderHistory() {
         url: '/prevCalculations',
     }).then((response) => {
         console.log('in history', response);
-
-        //         $('$#jsHistoryBox').prepend(`
-        // <button id="jsClearServerHistory">Clear History</button>`);
-
         let history = response;
         $('#jsHistory').empty();
         for (let each of history) {
             $('#jsHistory').append(`
-            <li>${each.num1} ${each.opperator} ${each.num2} = ${each.result}</li>`);
+            <li class="jsHistoricalItem" data-num1="${each.num1}" data-num2="${each.num2}" data-opp="${each.opperator}" >${each.num1} ${each.opperator} ${each.num2} = ${each.result}</li>`);
         }
     });
 }
@@ -109,4 +98,10 @@ function clearHistory() {
         console.log('delete server history', response);
         renderHistory();
     });
+}
+
+function recompute() {
+    $('#jsNum1').val($(this).data().num1);
+    $('#jsNum2').val($(this).data().num2);
+    opperatorInput = $(this).data().opp;
 }
