@@ -64,6 +64,11 @@ app.post('/calc', (req, res) => {
     res.sendStatus(201);
 });
 
+app.delete('/clearHistory', (req, res) => {
+    history = [];
+    res.sendStatus(200);
+});
+
 app.get('/solved', (req, res) => {
     console.log('get request recieved');
     res.send({ solved });

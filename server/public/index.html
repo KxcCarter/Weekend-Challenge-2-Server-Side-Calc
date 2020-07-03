@@ -17,22 +17,24 @@
             <h1>Server-side Calculator</h1>
         </header>
         <div class="" id="jsInputArea">
-            <input id="jsNum1" type="number" />
+            <input id="jsNum1" type="number" placeholder="Number" />
             <button class="js-btn-opperator" data-opp="+">+</button>
             <button class="js-btn-opperator" data-opp="-">-</button>
             <button class="js-btn-opperator" data-opp="*">*</button>
             <button class="js-btn-opperator" data-opp="/">/</button>
 
-            <input id="jsNum2" type="number" />
+            <input id="jsNum2" type="number" placeholder="Number" />
             <button id="jsCalculate">=</button>
-            <button id="jsClear">C</button>
+            <button id="jsClearInputs">C</button>
         </div>
         <div class="jsAnswer" id="">
             <h3 id="jsCalcResult"></h3>
         </div>
-        <div class="">
+        <div class="jsDisplayHistory">
             <h4>Previous Calculations</h4>
-            <ul id="jsHistory"></ul>
+            <div id="jsHistoryBox">
+                <ul id="jsHistory"></ul>
+            </div>
         </div>
     </div>
 </body>

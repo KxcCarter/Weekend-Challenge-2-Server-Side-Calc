@@ -7,6 +7,9 @@ function init() {
     console.log('js and jQuery loaded');
     $('.js-btn-opperator').on('click', handleOpp);
     $('#jsCalculate').on('click', performCalc);
+    $('#jsClearInputs').on('click', clearInputs);
+    $('#jsClearInputs').on('dblclick', clearHistory);
+    renderHistory();
 }
 
 // mathObject structure
@@ -21,12 +24,26 @@ function handleOpp() {
     opperatorInput = $(this).data('opp');
 }
 
+function clearInputs() {
+    $('#jsNum1').val('');
+    $('#jsNum2').val('');
+}
+
 function performCalc() {
     let mathObject = {
         num1: parseInt($('#jsNum1').val()),
         num2: parseInt($('#jsNum2').val()),
         opperator: opperatorInput,
     };
+
+    if (
+        $('#jsNum1').val() == '' ||
+        $('#jsNum2').val() == '' ||
+        mathObject.opperator == null
+    ) {
+        alert('Please complete all fields!');
+        return;
+    }
 
     $.ajax({
         type: 'POST',
@@ -71,11 +88,25 @@ function renderHistory() {
         url: '/prevCalculations',
     }).then((response) => {
         console.log('in history', response);
+
+        //         $('$#jsHistoryBox').prepend(`
+        // <button id="jsClearServerHistory">Clear History</button>`);
+
         let history = response;
         $('#jsHistory').empty();
         for (let each of history) {
             $('#jsHistory').append(`
             <li>${each.num1} ${each.opperator} ${each.num2} = ${each.result}</li>`);
         }
+    });
+}
+
+function clearHistory() {
+    $.ajax({
+        type: 'DELETE',
+        url: '/clearHistory',
+    }).then((response) => {
+        console.log('delete server history', response);
+        renderHistory();
     });
 }
