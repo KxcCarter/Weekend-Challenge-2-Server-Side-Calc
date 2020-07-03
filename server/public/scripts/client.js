@@ -45,7 +45,6 @@ function retrieveSolved() {
         })
         .then((response) => {
             console.log('GET - response:', response);
-            currentSolution = response.solved.result;
             render(response.solved);
         })
         .catch(function(err) {
@@ -63,4 +62,20 @@ function render(solved) {
         solved.result,
     ];
     $('#jsCalcResult').text(`${a} ${opp} ${b} = ${answer}`);
+    renderHistory();
+}
+
+function renderHistory() {
+    $.ajax({
+        type: 'GET',
+        url: '/prevCalculations',
+    }).then((response) => {
+        console.log('in history', response);
+        let history = response;
+        $('#jsHistory').empty();
+        for (let each of history) {
+            $('#jsHistory').append(`
+            <li>${each.num1} ${each.opperator} ${each.num2} = ${each.result}</li>`);
+        }
+    });
 }
