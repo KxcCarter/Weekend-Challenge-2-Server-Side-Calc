@@ -9,36 +9,40 @@ app.use(bodyParser.json());
 
 app.use(express.static('server/public'));
 
-const history = [];
-let mathSolved = null;
+let history = [];
+let solved = null;
 
 // LOGIC //
 
 // calculates solution and pushes a new object containing solution into history array.
 function calculate(mathObject) {
+    console.log('in calculate');
     let result = null;
+    let mathSolved = {};
 
-    let a,
-        b,
-        opp = [mathObject.num1, mathObject.num2, mathObject.opperator];
+    let a, b, opp;
+
+    [a, b, opp] = [mathObject.num1, mathObject.num2, mathObject.opperator];
 
     switch (opp) {
-        case opp === '+':
+        case '+':
             result = Number(a) + Number(b);
             break;
-        case opp === '-':
+        case '-':
             result = Number(a) - Number(b);
             break;
-        case opp === '*':
+        case '*':
             result = Number(a) * Number(b);
             break;
-        case opp === '/':
+        case '/':
             result = Number(a) / Number(b);
             break;
     }
+
     mathObject.result = result;
     mathSolved = mathObject;
     history.push(mathSolved);
+    return mathSolved;
 } // end calculate
 
 // GET AND POST ROUTES //
@@ -53,12 +57,15 @@ function calculate(mathObject) {
 
 app.post('/calc', (req, res) => {
     let mathObject = req.body;
+    console.log(mathObject);
     calculate(mathObject);
+    console.log('mathSolved pushed to history');
     res.sendStatus(201);
 });
 
 app.get('/solved', (req, res) => {
-    res.send(mathSolved);
+    console.log(solved);
+    res.send(solved);
 });
 
 app.get('/prevCalculations', (req, res) => {

@@ -16,16 +16,16 @@
         <header class="jumbotron">
             <h1>Server-side Calculator</h1>
         </header>
-        <div class="" id="jsInput">
-            <input type="number" />
-            <button data="">+</button>
-            <button data="">-</button>
-            <button data="">*</button>
-            <button data="">/</button>
+        <div class="" id="jsInputArea">
+            <input id="jsNum1" type="number" />
+            <button class="js-btn-opperator" data-opp="+">+</button>
+            <button class="js-btn-opperator" data-opp="-">-</button>
+            <button class="js-btn-opperator" data-opp="*">*</button>
+            <button class="js-btn-opperator" data-opp="/">/</button>
 
-            <input type="number" />
-            <button>=</button>
-            <button>C</button>
+            <input id="jsNum2" type="number" />
+            <button id="jsCalculate">=</button>
+            <button id="jsClear">C</button>
         </div>
         <div class="" id="jsAnswer"></div>
         <div class="" id="jsHistory"></div>
