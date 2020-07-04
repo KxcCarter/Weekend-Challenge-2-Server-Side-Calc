@@ -10,8 +10,8 @@ function init() {
     console.log('js and jQuery loaded');
     $('.js-btn-operator').on('click', handleOp);
     $('.js-Calculate').on('click', performCalc);
-    $('#jsClearInputs').on('click', clearInputs);
-    $('#jsClearInputs').on('dblclick', clearHistory);
+    $('.js-Clear-Inputs').on('click', clearInputs);
+    $('.js-Clear-Inputs').on('dblclick', clearHistory);
     $('#jsHistory').on('click', '.jsHistoricalItem', recompute);
     $('#jsKeypad').on('click', '.js-Num', handleGUI);
     renderHistory();
@@ -132,3 +132,7 @@ function handleGUI() {
         $('#jsNum2').val(displayVal2);
     }
 }
+
+// TODO: Allow use of decimal point.
+
+// TODO: Create button to delete previously input digit.
