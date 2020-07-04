@@ -13,89 +13,95 @@
 
 <body>
     <div class="container bg-light">
-        <header class="jumbotron">
+        <header class="jumbotron text-center">
             <h1>Server-side Calculator</h1>
         </header>
-        <div class="" id="jsInputArea">
-            <input id="jsNum1" type="number" placeholder="Number" />
-            <button class="js-btn-operator" data-op="+">+</button>
-            <button class="js-btn-operator" data-op="-">-</button>
-            <button class="js-btn-operator" data-op="*">*</button>
-            <button class="js-btn-operator" data-op="/">/</button>
+        <div class="input-group text-center bg-dark p-4" id="jsInputArea">
+            <input class="form-control" id="jsNum1" type="number" placeholder="Number" />
+            <button class="js-btn-operator btn btn-light" data-op="+">+</button>
+            <button class="js-btn-operator btn btn-light" data-op="-">-</button>
+            <button class="js-btn-operator btn btn-light" data-op="*">*</button>
+            <button class="js-btn-operator btn btn-light" data-op="/">/</button>
 
-            <input id="jsNum2" type="number" placeholder="Number" />
-            <button class="js-Calculate">=</button>
-            <button class="js-Clear-Inputs">C</button>
-
-            <div class="btn-toolbar" id="jsKeypad" role="toolbar">
-                <div class="btn-group btn-group-lg btn-group-vertical" role="group">
-                    <button type="button" value="1" class="btn btn-light js-Num">
+            <input class="form-control" id="jsNum2" type="number" placeholder="Number" />
+            <button class="js-Calculate btn btn-success">=</button>
+            <button class="js-Clear-Inputs btn btn-outline-danger">C</button>
+        </div>
+        <div class="container mt-3">
+            <div class="row">
+                <div class="btn-toolbar col-md-6" id="jsKeypad" role="toolbar">
+                    <div class="btn-group btn-group-lg btn-group-vertical" role="group">
+                        <button type="button" value="1" class="btn btn-light js-Num">
               1
             </button>
-                    <button type="button" value="4" class="btn btn-light js-Num">
+                        <button type="button" value="4" class="btn btn-light js-Num">
               4
             </button>
-                    <button type="button" value="7" class="btn btn-light js-Num">
+                        <button type="button" value="7" class="btn btn-light js-Num">
               7
             </button>
-                    <button type="button" value="C" class="btn btn-secondary">C</button>
-                </div>
-                <div class="btn-group btn-group-lg btn-group-vertical" role="group">
-                    <button type="button" value="2" class="btn btn-light js-Num">
+                        <button type="button" value="C" class="btn btn-info">C</button>
+                    </div>
+                    <div class="btn-group btn-group-lg btn-group-vertical" role="group">
+                        <button type="button" value="2" class="btn btn-light js-Num">
               2
             </button>
-                    <button type="button" value="5" class="btn btn-light js-Num">
+                        <button type="button" value="5" class="btn btn-light js-Num">
               5
             </button>
-                    <button type="button" value="8" class="btn btn-light js-Num">
+                        <button type="button" value="8" class="btn btn-light js-Num">
               8
             </button>
-                    <button type="button" value="0" class="btn btn-light js-Num">
+                        <button type="button" value="0" class="btn btn-light js-Num">
               0
             </button>
-                </div>
-                <div class="btn-group btn-group-lg btn-group-vertical" role="group">
-                    <button type="button" value="3" class="btn btn-light js-Num">
+                    </div>
+                    <div class="btn-group btn-group-lg btn-group-vertical" role="group">
+                        <button type="button" value="3" class="btn btn-light js-Num">
               3
             </button>
-                    <button type="button" value="6" class="btn btn-light js-Num">
+                        <button type="button" value="6" class="btn btn-light js-Num">
               6
             </button>
-                    <button type="button" value="9" class="btn btn-light js-Num">
+                        <button type="button" value="9" class="btn btn-light js-Num">
               9
             </button>
-                    <button type="button" value="." class="btn btn-secondary js-Num">
+                        <button type="button" value="." class="btn btn-info js-Num">
               .
             </button>
-                </div>
-                <div class="btn-group btn-group-lg btn-group-vertical" role="group">
-                    <button type="button" value="+" data-op="+" class="btn btn-secondary js-btn-operator">
+                    </div>
+                    <div class="btn-group btn-group-lg btn-group-vertical" role="group">
+                        <button type="button" value="+" data-op="+" class="btn btn-info js-btn-operator">
               +
             </button>
-                    <button type="button" value="-" data-op="-" class="btn btn-secondary js-btn-operator">
+                        <button type="button" value="-" data-op="-" class="btn btn-info js-btn-operator">
               -
             </button>
-                    <button type="button" value="*" data-op="*" class="btn btn-secondary js-btn-operator">
+                        <button type="button" value="*" data-op="*" class="btn btn-info js-btn-operator">
               *
             </button>
-                    <button type="button" value="/" data-op="/" class="btn btn-secondary js-btn-operator">
+                        <button type="button" value="/" data-op="/" class="btn btn-info js-btn-operator">
               /
             </button>
+                    </div>
+                    <div class="btn-group btn-group-lg btn-block">
+                        <button class="btn btn-success col-md-4 js-Calculate" value="=">=</button>
+                    </div>
                 </div>
-                <div class="btn-group btn-group-lg btn-block">
-                    <button class="btn btn-success js-Calculate" value="=">=</button>
+                <div class="col-md-6">
+                    <div class="jsAnswer" id="">
+                        <h3 id="jsCalcResult"></h3>
+                    </div>
+                    <div class="jsDisplayHistory">
+                        <h4>Previous Calculations</h4>
+                        <div id="jsHistoryBox">
+                            <ul id="jsHistory"></ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="jsAnswer" id="">
-            <h3 id="jsCalcResult"></h3>
-        </div>
-        <div class="jsDisplayHistory">
-            <h4>Previous Calculations</h4>
-            <div id="jsHistoryBox">
-                <ul id="jsHistory"></ul>
-            </div>
-        </div>
+    </div>
     </div>
 </body>
 
