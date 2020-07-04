@@ -33,8 +33,8 @@ function clearInputs() {
 
 function performCalc() {
     let mathObject = {
-        num1: parseInt($('#jsNum1').val()),
-        num2: parseInt($('#jsNum2').val()),
+        num1: parseFloat($('#jsNum1').val()),
+        num2: parseFloat($('#jsNum2').val()),
         operator: operatorInput,
     };
 
@@ -124,11 +124,13 @@ function handleGUI() {
         inputNum1.push($(this).val());
         displayVal1 = inputNum1.join('');
         console.log(displayVal1);
+        if (displayVal1[displayVal1.length - 1] == '.') displayVal1 += '0';
         $('#jsNum1').val(displayVal1);
     } else {
         inputNum2.push($(this).val());
         displayVal2 = inputNum2.join('');
         console.log(displayVal2);
+        if (displayVal2[displayVal2.length - 1] == '.') displayVal2 += '0';
         $('#jsNum2').val(displayVal2);
     }
 }
