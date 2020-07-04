@@ -3,24 +3,32 @@ $(document).ready(init);
 let operatorInput = null;
 let currentSolution = null;
 
+let inputNum1 = [];
+let inputNum2 = [];
+
 function init() {
     console.log('js and jQuery loaded');
     $('.js-btn-operator').on('click', handleOp);
-    $('#jsCalculate').on('click', performCalc);
+    $('.js-Calculate').on('click', performCalc);
     $('#jsClearInputs').on('click', clearInputs);
     $('#jsClearInputs').on('dblclick', clearHistory);
     $('#jsHistory').on('click', '.jsHistoricalItem', recompute);
-    $('#jsKeypad').on('click', '.btn', handleGUI);
+    $('#jsKeypad').on('click', '.js-Num', handleGUI);
     renderHistory();
 }
 
 function handleOp() {
+    console.log($(this).data());
+
     operatorInput = $(this).data('op');
 }
 
 function clearInputs() {
     $('#jsNum1').val('');
     $('#jsNum2').val('');
+    operatorInput = null;
+    inputNum1 = [];
+    inputNum2 = [];
 }
 
 function performCalc() {
@@ -47,6 +55,7 @@ function performCalc() {
         console.log(response);
         retrieveSolved();
     });
+    clearInputs();
 }
 
 function retrieveSolved() {
@@ -108,15 +117,18 @@ function recompute() {
     performCalc();
 }
 
-let inputNum1 = [];
-let inputNum2 = [];
-
 function handleGUI() {
     let displayVal1 = 0;
-    inputNum1.push($(this).val());
-    console.log(inputNum1);
-    for (let num of inputNum1) {
-        displayVal1 += num;
+    let displayVal2 = 0;
+    if (operatorInput == null) {
+        inputNum1.push($(this).val());
+        displayVal1 = inputNum1.join('');
+        console.log(displayVal1);
+        $('#jsNum1').val(displayVal1);
+    } else {
+        inputNum2.push($(this).val());
+        displayVal2 = inputNum2.join('');
+        console.log(displayVal2);
+        $('#jsNum2').val(displayVal2);
     }
-    console.log(displayVal1);
 }
